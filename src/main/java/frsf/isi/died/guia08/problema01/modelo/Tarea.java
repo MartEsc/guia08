@@ -12,33 +12,9 @@ public class Tarea {
 	private LocalDateTime fechaFin;
 	private Boolean facturada;
 	
-	
-	
-	
-	
-	public Tarea(Integer id, String descripcion, Integer duracionEstimada, Empleado empleadoAsignado,
-			LocalDateTime fechaInicio, LocalDateTime fechaFin, Boolean facturada) {
-		super();
-		this.id = id;
-		this.descripcion = descripcion;
-		this.duracionEstimada = duracionEstimada;
-		this.empleadoAsignado = empleadoAsignado;
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
-		this.facturada = facturada;
-	}
-
-	public void setEmpleadoAsignado(Empleado empleadoAsignado) {
-		this.empleadoAsignado = empleadoAsignado;
-	}
-
-	public void asignarEmpleado(Empleado e) throws ExcepcionAsignarEmpleado {
+	public void asignarEmpleado(Empleado e) {
 		// si la tarea ya tiene un empleado asignado
 		// y tiene fecha de finalizado debe lanzar una excepcion
-		if(getFechaFin() != null) {
-			setEmpleadoAsignado(e);
-		}
-		else throw new ExcepcionAsignarEmpleado("Esta tarea ya se asigno a un empleado");
 	}
 
 	public Integer getId() {
