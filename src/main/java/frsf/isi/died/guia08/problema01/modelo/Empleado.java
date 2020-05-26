@@ -1,9 +1,10 @@
 package frsf.isi.died.guia08.problema01.modelo;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.*;
+import java.util.function.*;
+
+
 
 public class Empleado {
 
@@ -17,8 +18,60 @@ public class Empleado {
 	
 	private Function<Tarea, Double> calculoPagoPorTarea;		
 	private Predicate<Tarea> puedeAsignarTarea;
-
 	
+	public Integer getCuil() {
+		return cuil;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	public Double getCostoHora() {
+		return costoHora;
+	}
+
+	public Function<Tarea, Double> getCalculoPagoPorTarea() {
+		return calculoPagoPorTarea;
+	}
+
+	public Predicate<Tarea> getPuedeAsignarTarea() {
+		return puedeAsignarTarea;
+	}
+
+	public Empleado(Integer cuil, String nombre, Tipo tipo, Double costoHora) {
+		super();
+		this.cuil = cuil;
+		this.nombre = nombre;
+		this.tipo = tipo;
+		this.costoHora = costoHora;
+		this.tareasAsignadas = new ArrayList<Tarea>();
+		
+		switch(tipo) {
+		case CONTRATADO:
+		this.puedeAsignarTarea = variableTarea -> getTareasAsignadas().stream()
+				 .filter(tareaFin -> tareaFin.getFechaFin() != null)
+				 .count() <= 5;
+		break;
+		case EFECTIVO: 
+		this.puedeAsignarTarea = variableTareaE -> getTareasAsignadas().stream()
+				.filter(tareaFin -> tareaFin.getFechaFin() != null)
+				.mapToInt( tareas -> tareas.getDuracionEstimada())
+				.sum() <15;
+		break;}
+
+		
+		
+	}
+
+	private List<Tarea> getTareasAsignadas() {
+		return this.tareasAsignadas;
+	}
+
 	public Double salario() {
 		// cargar todas las tareas no facturadas
 		// calcular el costo

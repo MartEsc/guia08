@@ -12,6 +12,21 @@ public class Tarea {
 	private LocalDateTime fechaFin;
 	private Boolean facturada;
 	
+	
+	
+	
+	
+	public Tarea(Integer id, String descripcion, Integer duracionEstimada, LocalDateTime fechaInicio,
+			LocalDateTime fechaFin) {
+		super();
+		this.id = id;
+		this.descripcion = descripcion;
+		this.duracionEstimada = duracionEstimada;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		
+	}
+
 	public void asignarEmpleado(Empleado e) {
 		// si la tarea ya tiene un empleado asignado
 		// y tiene fecha de finalizado debe lanzar una excepcion
